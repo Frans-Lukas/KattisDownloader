@@ -16,21 +16,20 @@ public class KattisDownloader {
         String startDownloadPage = "https://open.kattis.com/problems?show_solved=on&show_tried=off&show_untried=off";
 
         String email = askForEmail();
-        System.out.println();
         String password = askForPassword();
 
-        KattisDownloader http = new KattisDownloader();
+        HttpHandler http = new HttpHandler();
 
         CookieHandler.setDefault(new CookieManager());
 
+        //1. Send "GET" request so that you can extract the forms data
         String page = http.GetPageContent(url);
-        //String postParams = http.getFormParams(page, email, password)
+        String postParams = http.getFormParams(page, email, password);
 
-    }
+        //2. Construct above posts content and then send a POST request for
+        //authentication
+        http.sendPost(url, postParams);
 
-    private static String askForPassword() {
-        System.out.print("Please enter your password: ");
-        return reader.nextLine();
     }
 
     private static String askForEmail() {
@@ -38,8 +37,8 @@ public class KattisDownloader {
         return reader.nextLine();
     }
 
-    private String GetPageContent(String url) {
-
-        return "";
+    private static String askForPassword() {
+        System.out.print("Please enter your password: ");
+        return reader.nextLine();
     }
 }
