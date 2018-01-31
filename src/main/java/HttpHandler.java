@@ -10,4 +10,8 @@ public class HttpHandler {
     public void sendPost(String url, String postParams) {
 
     }
+
+    public String getPageContent(String startDownloadPage) {
+        return "";
+    }
 }

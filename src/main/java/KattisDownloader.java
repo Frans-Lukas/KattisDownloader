@@ -30,6 +30,9 @@ public class KattisDownloader {
         //authentication
         http.sendPost(url, postParams);
 
+        //3. Success then go to kattis problem page.
+        Downloader downloader = new Downloader(http.getPageContent(startDownloadPage));
+
     }
 
     private static String askForEmail() {
